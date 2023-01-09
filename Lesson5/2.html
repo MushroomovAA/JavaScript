@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+
+<p class="dropdown">Привет :)</p>
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+    Dropdown button
+  </button>
+  <div class="menu dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </div>
+</div>
+
+<script>
+  "use strict";
+
+  /*
+  1. Ко всем элементам, имеющим класс "dropdown-item" добавить еще один класс
+  "super-dropdown", необходимо использовать методы forEach и querySelectorAll и
+  свойство classList у элементов.
+   */
+
+  const dropdownClasses = document.querySelectorAll('.dropdown-item');
+  console.log(dropdownClasses);
+  dropdownClasses.forEach(function(dropdownClass, dropdownClasses) {
+    dropdownClass.classList.add('super-dropdown');
+  });
+
+  /*
+  2. У элемента с классом btn необходимо убрать класс "btn-secondary", если он
+  присутствует у этого элемента, либо добавить, если такого класса у элемента
+  не было.
+   */
+
+  const btnEl = document.querySelector('.btn');
+  btnEl.classList.toggle('btn-secondary');
+
+  /*
+  3. Необходимо удалить класс "dropdown-menu" у элемента, у которого
+  присутствует класс "menu".
+   */
+
+  const removeEl = document.querySelector('.menu');
+  removeEl.classList.remove('dropdown-menu');
+
+  /*
+  4. Используя метод insertAdjacentHTML добавьте после div'a с классом
+  "dropdown" следующую разметку:
+    <a href="#">link</a>
+   */
+
+  const newLineEl = document.querySelector('div.dropdown');
+  console.log(newLineEl);
+  newLineEl.insertAdjacentHTML("afterend", '<a href="#">link</a>');
+
+  // Если я прапвильно понял то "после div'a это значит после второго тэга div, после тела <div...</div> (вот тута)"
+  // Если надо было после первого тэга div, нужно использовать:
+  //newLineEl.insertAdjacentHTML("afterbegin", '<a href="#">link</a>')
+
+  /*
+  5. У элемента с id "dropdownMenuButton" замените id на "superDropdown".
+   */
+
+  const changeId = document.getElementById('dropdownMenuButton');
+  changeId.id = 'superDropdown';
+
+  /*
+  6. Добавьте атрибут data-dd со значением 3 элементу у которого существует
+  атрибут "aria-labelledby" равный "dropdownMenuButton" используя dataset.
+   */
+
+  const attribEl = document.querySelector('[aria-labelledby="dropdownMenuButton"]');
+  attribEl.dataset.dd = '3';
+  /*
+  7. Удалите атрибут type у элемента с классом "dropdown-toggle".
+   */
+
+  const delAttrbt = document.querySelector('.dropdown-toggle');
+  delAttrbt.removeAttribute('type');
+
+  /*
+  8. Выведите в консоль все имеющиеся атрибуты и их значения тега у которого
+  есть все два класса btn и dropdown-toggle.
+  Вывод каждого атрибута и значений должен выглядеть следующим образом (пример):
+  Атрибут "class" содержит значение "btn btn-secondary dropdown-toggle"
+   */
+
+  const allAttrbtEl = document.querySelector('.btn.dropdown-toggle').attributes;
+  for (const attrbtEl of allAttrbtEl) {
+    console.log(`Атрибут "${attrbtEl.name}" содержит значение "${attrbtEl.value}"`);
+  }
+
+  allAttrbtEl.forEach(attrbtEl, allAttrbtEl){
+    console.log(`Атрибут "${attrbtEl.name}" содержит значение "${attrbtEl.value}"`);
+  } //- почему то не работает. forEach перебор массива. 
+  //NamedNodeMap представляет собой коллекцию объектов - это массив?
+  
+</script>
+</body>
+</html>
