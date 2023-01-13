@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Homework</title>
+  <style>
+    .product {
+      width: 200px;
+      padding: 10px;
+      float: left;
+      margin-right: 30px;
+      box-shadow: 0 0 4px black;
+    }
+  </style>
+</head>
+<body>
+<!--
+Обязательное задание.
+
+Выполнить все задачи в теге script. Комментарии, в которых написаны задачи, не
+стирать, код с решением задачи пишем под комментарием.
+-->
+<div class="product">
+  <div class="productName">Товар 1</div>
+  <img src="https://loremflickr.com/200/300/goods?lock=2" alt="">
+  <button>В корзину</button>
+</div>
+<div class="product">
+  <div class="productName">Товар 2</div>
+  <img src="https://loremflickr.com/200/300/goods?lock=12" alt="">
+  <button>В корзину</button>
+</div>
+<div class="product">
+  <div class="productName">Товар 3</div>
+  <img src="https://loremflickr.com/200/300/goods?lock=33" alt="">
+  <button>В корзину</button>
+</div>
+
+<script>
+  "use strict";
+
+  /*
+  1. Установите всем элементам с классом "productName" размер шрифта 24px.
+   */
+
+  const sizeText = document.querySelectorAll('.productName')
+  
+  
+  for (let i = 0; i < sizeText.length; i++) {
+    sizeText[i].style.fontSize = '24px'
+  };
+
+  /*
+  2. Установите всем элементам с классом "product" внешний отступ справа 50px.
+   */
+
+   const indentText = document.querySelectorAll('.product')
+
+   for (let i = 0; i < indentText.length; i++) {
+    indentText[i].style.marginRight = '50px'
+  };
+
+  /*
+  3. При клике на кнопку "В корзину" название кнопки должно поменяться на
+  "Добавлено" и кнопка должна стать неактивной.
+   */
+
+  // const btns = document.querySelectorAll('button');
+  //   for(const btn of btns){
+  //     btn.addEventListener('click', () => { 
+  //       btn.textContent = 'Добавлено';
+  //       btn.disabled = true;
+  //   })
+  // }; перестало работать для товара 4 после выполненя задания 4,
+  // если этот код кинуть под задание 4 все работает, оно и логично
+
+  document.body.onclick = function(event) {
+    const btn = event.target;
+    if (btn.tagName != 'BUTTON') return;
+    btn.textContent = 'Добавлено';
+    btn.disabled = true;
+  };
+
+  // Почему BUTTON, а не button? Тег жеж написан маленькими буквами
+  
+  /*
+  4. Создайте полную (глубокую) копию элемента с классом product, измените в
+  этой копии путь до картинки на:
+  https://loremflickr.com/200/300/goods?lock=37
+  Поставьте название товара в данной копии "Товар 4" и замените последний
+  отображенный товар на странице на созданную копию. У данной копии также
+  должен правильно работать код из 3-го задания.
+   */
+
+  // const products = document.querySelectorAll('.product')
+  // const lastProduct = products[products.length - 1]
+  // const copyLastProduct = lastProduct.cloneNode(true)
+  // copyLastProduct.querySelector('.productName').textContent = 'Товар 4'
+  // copyLastProduct.querySelector('img').src =
+  // 'https://loremflickr.com/200/300/goods?lock=37'
+  // document. "..." .replaceWith(copyLastProduct) 
+  // /* как к примеру заменить второй продукт на copyLastProduct? 
+  // 101 строка не рабтает, что написать вместо '...', что бы заменить товар к примеру:
+  // 1) товар найденный по индексу [1] или по тексту 'Товар 2 
+  // 2) заменить используя перемнную lastProduct'
+  // */
+  
+
+  const copyProduct = document.querySelector('.product').cloneNode(true);
+  copyProduct.querySelector('.productName').textContent = 'Товар 4';
+  copyProduct.querySelector('img').src =
+  'https://loremflickr.com/200/300/goods?lock=37';
+  document.querySelector('.product:last-of-type').replaceWith(copyProduct);
+
+  /*
+  5. По истечении 2 секунд с момента открытия страницы первый товар должен быть
+  удален из html.
+   */
+  
+  setTimeout(() => document.querySelector('.product').remove(), 2000)
+
+  
+</script>
+</body>
+</html>
